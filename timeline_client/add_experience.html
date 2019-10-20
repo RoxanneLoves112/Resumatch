@@ -1,0 +1,143 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Timeline</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+</head>
+
+<body>
+  <nav>
+    <ul>
+      <li><a href="home.html">Home</a></li>
+      <li><a href="add_experience.html">Add an Experience</a></li>
+    </ul>
+  </nav>
+
+  <h1>Add an Experience</h1>
+  
+  <form name="experience">
+    <label for="companyName">Enter your Company:</label>
+    <!--TODO: Company Name API: https://blog.clearbit.com/company-autocomplete-api/ -->
+    <input type="text" name="companyName">
+
+    <br><br>
+
+    <label for="role">Enter your Role:</label>
+    <select name="role" form="experience">
+      <option value="engineer">Software Engineering</option>
+      <option value="designer">UI/UX Design</option>
+    </select>
+
+    <br><br>
+
+    <label for="jobType">Job Type:</label>
+    <select name="jobType" form="experience">
+      <option value="internship">Internship</option>
+      <option value="fulltime">Full-time</option>
+    </select>
+
+    <br><br>
+
+    <button type="button" onclick="showAddNodeForm()">Add a Node</button>
+
+    <div id="addNodeForm" style="display:none;">
+      <h2> Add a Node</h2>
+      <form name="node" >
+        <label for="date">Date:</label>
+        <input type="date">
+        <!-- <div id="flat-slider"></div> -->
+        <br><br>
+
+        <label for="stage">Stage:</label>
+        <input type="text" name="stage">
+
+        <br><br>
+
+        <!-- TODO: Question type list based on position -->
+        <label for="questionType">Question Type:</label>
+        <select name="questionType" form="node">
+          <option value="behavior">Behavioral</option> 
+          <option value="technical">Technical</option>
+        </select>
+
+        <br><br>
+
+        <label for="examplequestion">Example Questions:</label>
+        <textarea name="examplequestion" cols="25" rows="5"></textarea>
+
+        <br><br>
+
+        <button type="button">Add</button>
+      </form>
+    </div>
+    <div>
+      <h2>Exsiting Nodes</h2>
+      <table>
+        <tr>
+          <th>Date</th>
+          <th>Stage</th>
+          <th>Question Type</th>
+          <th>Example Questions</th>
+        </tr>
+        <tr>
+          <td>10/01/19</td>
+          <td>Online Assessment</td>
+          <td>Technical</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>10/10/19</td>
+          <td>Technical Screen</td>
+          <td>Technical</td>
+          <td>N/A</td>
+        </tr>
+        <tr>
+          <td>10/19/19</td>
+          <td>Onsite</td>
+          <td>Technical</td>
+          <td>N/A</td>
+        </tr>
+      </table>
+    </div>
+
+    <br><br>
+
+    <button type="button">Submit</button>
+  </form> 
+
+  <script>
+    function showAddNodeForm() {
+      var x = document.getElementById("addNodeForm");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+      } else {
+        x.style.display = "none";
+      }
+    }
+    $("#flat-slider")
+    .slider({
+        max: 50,
+        min: 0,
+        range: true,
+        values: [15, 35]
+    })
+    .slider("pips", {
+        first: "pip",
+        last: "pip"
+    });
+                    
+  </script>
+
+</body>
+</html>
