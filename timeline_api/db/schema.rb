@@ -12,9 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20191018193106) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "experiences", force: :cascade do |t|
     t.string "company"
     t.string "role"
@@ -28,11 +25,10 @@ ActiveRecord::Schema.define(version: 20191018193106) do
     t.string "stage"
     t.string "question_type"
     t.text "example_questions"
-    t.bigint "experience_id"
+    t.integer "experience_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["experience_id"], name: "index_nodes_on_experience_id"
   end
 
-  add_foreign_key "nodes", "experiences"
 end
