@@ -1,0 +1,62 @@
+.subNav {
+	background-color: #EDF4FF;
+	min-height: 70px;
+}
+
+#timeline {
+	margin-top: 80px;
+	margin-bottom: 80px;
+}
+
+.experience {
+	display:block;
+    height:500px;
+    overflow:auto;
+}
+
+table.highlight>tbody>tr:hover {
+    background-color: #EDF4FF !important;
+}
+
+th, td {
+	width: 300px;
+}
+
+/* restyling tabs */
+.tabs  {
+	display: inline;
+}
+.tabs .tab a, .tabs .tab a.active {
+    color: #6582D1;
+}
+
+.tabs .tab a:hover {
+    background-color: #6582D1;
+    color: white;
+}
+
+.tabs .tab a:focus {
+    color: #6582D1;
+    background-color: #EDF4FF !important;
+}
+
+.tabs .indicator {
+	background-color: #6582D1;
+}
+
+/* restyling drop down buttons */
+.icon-drop {
+	margin-top: 10px;
+	float:right;
+	list-style-type:none;
+	margin-right:30px;
+}
+
+i {
+    display: inline-flex;
+    vertical-align: top;
+}
+
+
+
+

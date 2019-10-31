@@ -2,122 +2,173 @@
 
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
   <title>Timeline</title>
-  <meta name="description" content="The HTML5 Herald">
-  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-  <meta name="author" content="SitePoint">
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="Materialize/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="Materialize/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 
   <link rel="stylesheet" href="css/styles.css">
-  <script type="text/javascript">
-    $.ajax({
-      method: "GET",
-      url: "http://localhost:3000/experiences",
-      success: function(res) {
-        alert(res[0]["company"]);
-        console.log(res);
-      },
-      error: function(res) {
-        alert("Error");
-        console.log(res);
-      }
-    })
-  </script>
-
+  <link rel="stylesheet" href="css/home.css">
 </head>
 
 <body>
-  <nav>
+  <div class="navbar-fixed">
+    <nav class="white" role="navigation">
+      <div class="nav-wrapper container"><a id="logo-container" href="login.html" class="brand-logo"><img src="images/resumatch.png" alt="logo" width="180"></a>
+        <ul class="right hide-on-med-and-down">
+          <a class="grey-text darken-4" id="greeting" href="#!"></a>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <nav class="z-depth-0 subNav valign-wrapper">
     <ul>
-      <li><a href="home.html">Home</a></li>
-      <li><a href="add_experience.html">Add an Experience</a></li>
+      <li><a class='dropdown-trigger btn-flat btn-outline' href='#' data-target='jobType'>Job Type&nbsp;<i style="display:inline;" class="material-icons">arrow_drop_down</i></a></li>
+        <ul id='jobType' class='dropdown-content'>
+          <li><a href="#!">Software Engineer</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">UI/UX Designer</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Product Manager</a></li><li class="divider" tabindex="-1"></li>
+        </ul>
+      <li><a class='dropdown-trigger btn-flat btn-outline' href='#' data-target='company'>Company&nbsp;<i style="display:inline;" class="material-icons">arrow_drop_down</i></a></li>
+        <ul id='company' class='dropdown-content'>
+          <li><a href="#!">Google</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Facebook</a></li><li class="divider" tabindex="-1"></li>
+        </ul>
     </ul>
   </nav>
 
-  <h1>Home</h1>
+  <!-- The Timeline-->
+  <div class="container">
+    <div class="row" id="timeline">
+      <p><b>Google</b></p>
+    </div>
 
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <table>
-      <tr>
-        <th>Date</th>
-        <th>Stage</th>
-        <th>Question Type</th>
-        <th>Example Questions</th>
-      </tr>
-      <tr>
-        <td>10/01/19</td>
-        <td>Online Assessment</td>
-        <td>Technical</td>
-        <td>N/A</td>
-      </tr>
-      <tr>
-        <td>10/10/19</td>
-        <td>Technical Screen</td>
-        <td>Technical</td>
-        <td>N/A</td>
-      </tr>
-      <tr>
-        <td>10/19/19</td>
-        <td>Onsite</td>
-        <td>Technical</td>
-        <td>N/A</td>
-      </tr>
-    </table>
-  </div>
+    <!-- Tabs + Table for displaying data -->
+    <div class="row z-depth-1">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#behavioral">Behavioral</a></li>
+          <li class="tab col s3"><a href="#technical">Technical</a></li>
+        </ul>
 
-</div>
-  <div>
-    <h2>Exisiting Experiences</h2>
-    <table>
-      <tr>
+        <li class="icon-drop">
+          <a class='dropdown-trigger btn-flat btn-outline' href='#' data-target='comment-type'>Comment Type&nbsp;<i class="material-icons">arrow_drop_down</i></a>
+        </li>
+        <ul id='comment-type' class='dropdown-content'>
+          <li><a href="#!">Interview Questions</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Logictics</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Feedback</a></li><li class="divider" tabindex="-1"></li>
+          <li><a href="#!">Other</a></li><li class="divider" tabindex="-1"></li>
+        </ul>
+
+      </div>
+      <div id="behavioral" class="col s12"></div>
+      <div id="technical" class="col s12"></div>
+    </div>
+
+    <!-- Behavioral Table -->
+    <table class="experience highlight striped centered" id="tb-behavioral">
+      <thead>
         <th>Company</th>
         <th>Role</th>
         <th>Job Type</th>
         <th>More Info</th>
-      </tr>
-      <tr>
-        <td>Google</td>
-        <td>Software Engineering</td>
-        <td>Internship</td>
-        <td><button id="detailBtn">Click</button></td>
-      </tr>
+      </thead>
+      <tbody></tbody>
     </table>
-  </div>
-  
 
-  <script>
-    // Get the modal
-    var modal = document.getElementById("myModal");
-    
-    // Get the button that opens the modal
-    var btn = document.getElementById("detailBtn");
-    
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-    
-    // When the user clicks the button, open the modal 
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }
-    
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function() {
-      modal.style.display = "none";
-    }
-    
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "none";
-      }
-    }
-  </script>
+    <!-- Technical Table -->
+    <table class="experience highlight striped centered" id="tb-technical">
+      <thead>
+        <th>Company</th>
+        <th>Role</th>
+        <th>Job Type</th>
+        <th>More Info</th>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+
+    <!-- The Modal -->
+    <div id="myModal" class="modal">
+
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <table>
+          <tr>
+            <th>Date</th>
+            <th>Stage</th>
+            <th>Question Type</th>
+            <th>Example Questions</th>
+          </tr>
+          <tr>
+            <td>10/01/19</td>
+            <td>Online Assessment</td>
+            <td>Technical</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>10/10/19</td>
+            <td>Technical Screen</td>
+            <td>Technical</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>10/19/19</td>
+            <td>Onsite</td>
+            <td>Technical</td>
+            <td>N/A</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="page-footer orange">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">About Us</h5>
+          <p class="grey-text text-lighten-4">We are a team of college students from Carnegie Mellon working on this project aiming to provide tangible help for our fellows with job searching.</p>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Settings</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Connect</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Link 1</a></li>
+            <li><a class="white-text" href="#!">Link 2</a></li>
+            <li><a class="white-text" href="#!">Link 3</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+      Created by <a class="orange-text text-lighten-3" href="">Chelsea Cui, Clair Sun, Roxanne Zhang</a>
+      </div>
+    </div>
+  </footer>
+
+    <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="Materialize/js/materialize.js"></script>
+  <script src="Materialize/js/init.js"></script>
+  <script src="js/home.js"></script>
 
 </body>
 </html>
